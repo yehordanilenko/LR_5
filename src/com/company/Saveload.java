@@ -43,7 +43,7 @@ public class Saveload implements Serializable{
         bw.close();
         outStream.close();
     }
-    public void serialize(ArrayList<Familiar> familiars, String fileName) throws IOException {
+    public void serialize(Familiars familiars, String fileName) throws IOException {
         try {
             FileOutputStream fileOut = new FileOutputStream(fileName);
             ObjectOutputStream out = new ObjectOutputStream(fileOut);
@@ -53,7 +53,7 @@ public class Saveload implements Serializable{
         } catch (IOException e) {
             e.printStackTrace();
         }
-        familiars.clear();
+        familiars.familiars.clear();
     }
 
     public void jacksonSerialize(Familiars familiars, String fileName) throws IOException {
@@ -91,11 +91,11 @@ public class Saveload implements Serializable{
         }
     }
 
-    public ArrayList deserialize(ArrayList<Familiar> familiars, String fileName) throws IOException {
+    public void deserialize(Familiars familiars, String fileName) throws IOException {
         try {
             FileInputStream fileIn = new FileInputStream(fileName);
             ObjectInputStream in = new ObjectInputStream(fileIn);
-            familiars = (ArrayList<Familiar>) in.readObject();
+            familiars = (Familiars) in.readObject();
             in.close();
             fileIn.close();
         } catch (IOException e) {
@@ -104,7 +104,7 @@ public class Saveload implements Serializable{
             System.out.println("Not found!");
             с.printStackTrace();
         }
-        return familiars;
+        //return familiars;
     }
 
     public ArrayList jacksonDeSerialize(ArrayList<Familiar> familiars, String fileName) throws IOException {

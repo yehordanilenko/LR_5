@@ -23,10 +23,10 @@ public class Main {
                     "\n3)Выдача сведений о знакомых, имеющих телефон" +
                     "\n4)Добавление новой записи после записи с указанной фамилией" +
                     "\n5)Выдача сведений о знакомых с кодом телефона указанного оператора" +
-                    "\n6)Загрузить данные в файл" +
+                    "\n6)Выгрузить данные в файл" +
                     "\n7)Загрузить данные из файла" +
-                    "\n8)Загрузить данные (Сериализация)" +
-                    "\n9)Выгрузить данные (Десериализация)" +
+                    "\n8)Выгрузить данные (Сериализация)" +
+                    "\n9)Загрузить данные (Десериализация)" +
                     "\n10)Загрузка резервной копии" +
                     "\n11)Завершение работы программы");
             System.out.print("Выберете пункт меню :");
@@ -104,14 +104,14 @@ public class Main {
                 case 8:
                     System.out.println("Введите путь к файлу:");
                     String serializeOutFileName = scan.nextLine();
-                    //familiars.serializeSaveFile(serializeOutFileName);//нативная сериализация
-                    familiars.saveJacksonSerializeSaveFile(serializeOutFileName);//
+                    familiars.serializeSaveFile(serializeOutFileName);//нативная сериализация
+                   // familiars.saveJacksonSerializeSaveFile(serializeOutFileName);//
                     break;
                 case 9:
                     System.out.println("Введите путь к файлу:");
                     String deSerializeOutFileName = scan.nextLine();
-                    //familiars.deSerializeLoadFile(deSerializeOutFileName);//нативная десериазация 
-                    familiars.loadJacksonDeSerialize(deSerializeOutFileName);//
+                    familiars.deSerializeLoadFile(deSerializeOutFileName);//нативная десериазация
+                    //familiars.loadJacksonDeSerialize(deSerializeOutFileName);//
                     break;
                 case 10:
                     String reserveCopyFile = "reserve.txt";

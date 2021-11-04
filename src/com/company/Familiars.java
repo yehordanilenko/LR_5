@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.io.IOException;
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Scanner;
@@ -11,8 +12,10 @@ import java.util.Scanner;
 public class Familiars implements Serializable {
     @JsonProperty("familiars")
     ArrayList<Familiar> familiars;
-
+    @JsonProperty("description")
+    String description;
     public Familiars(){
+        description= LocalDate.now().toString();
         this.familiars=new ArrayList<>();
     }
 
@@ -86,18 +89,17 @@ public class Familiars implements Serializable {
 
     void serializeSaveFile(String fileWay) throws IOException {
         Saveload saveBase = new Saveload();
-        saveBase.serialize(this.familiars, fileWay);
+        saveBase.serialize(this, fileWay);
     }
 
     void deSerializeLoadFile(String fileWay) throws IOException {
         Saveload loadBase = new Saveload();
-        this.familiars = loadBase.deserialize(familiars, fileWay);
+        loadBase.deserialize(this, fileWay);
     }
 
     void loadJacksonDeSerialize(String fileWay) throws IOException {
         Saveload loadBase = new Saveload();
         this.familiars = loadBase.jacksonDeSerialize(familiars, fileWay);
-
     }
 
     void saveJacksonSerializeSaveFile(String fileWay) throws IOException {
@@ -109,6 +111,7 @@ public class Familiars implements Serializable {
     public String toString() {
         return "Familiars{" +
                 "familiars=\n" + familiars +
+                "\n"+ description+
                 '}';
     }
 }
